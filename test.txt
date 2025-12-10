@@ -2,3 +2,6 @@ hello
 yo
 this is a test
 hope this works
+oh wow it works
+nice
+time to try a js file
