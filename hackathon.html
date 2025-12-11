@@ -7,7 +7,10 @@
     <body>
         <h1>Save Those Food</h1>
         <br>
-        <img src="veg.jpg" style="height: 100px; width: auto;"></img_height>
+        <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2022/09/French-Toast-1-300x300.jpg" style="height: 100px; width: auto;"></img_height>
+        <img src="https://themodernnonna.com/wp-content/uploads/2022/09/Hidden-Veggie-Pasta-Sauce.jpg" style="height: 100px; width: auto;"></img_height>
+        <img src="https://thenaturalnurturer.com/wp-content/uploads/2022/01/carrot-banana-muffins-1-of-1.jpg" style="height: 100px; width: auto;"></img_height>
+        <img src="https://debraklein.com/wp-content/uploads/2025/04/Potato-and-Veggie-Hash-19-500x500.jpg" style="height: 100px; width: auto;"></img_height>
         <br>
         <!--use css to center the paragraph (done)-->
         <p>According to a UN report, some 931 million tonnes of food goes to waste each year, of which 61% comes from households.</p>
@@ -85,6 +88,7 @@
     button {
         text-align: center;
         background-color: #85cab1;
+        background: linear-gradient(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5);
         border: none;
         color: white;
         padding: 5px 10px;
@@ -99,12 +103,24 @@
         cursor: url("120x120ribboncursor.png"), auto;
     }
     button:active {
-        background-color: #4288ae;
-        transition: background-color 0.3s ease;
+        background-color: #0f5612;
+        cursor: url("120x120ribboncursor.png"), auto;
+    }
+
+    button:selected {
+        background-color: #0f5612;
         cursor: url("120x120ribboncursor.png"), auto;
     }
 
 </style>
+
+<script>
+    function buttonFunc(btn) {
+        btn.style.backgroundColor = "#0f5612";
+        cursor: url("120x120ribboncursor.png"), auto;
+    }
+</script>
+
         <br>
     </body>
 </html>
