@@ -15,6 +15,10 @@ HTML Code:
 CSS Code:
 - cursor images:
 - food images:
+https://www.inspiredtaste.net/37646/vegetable-soup-recipe/
+https://tastesbetterfromscratch.com/classic-french-toast/
+https://thenaturalnurturer.com/oatmeal-banana-carrot-muffins/
+https://debraklein.com/easy-vegan-potato-and-veggie-hash-skillet-recipe/#recipe
 - background image:
 
 
