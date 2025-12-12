@@ -1,6 +1,6 @@
-//import postgresql
-import pkg from 'pg';
-const {Client} = pkg;
+//import node.js
+import express from 'express';
+import { connection } from './db.js'; //handles database connection details
 
 let foodArr = [];
 
@@ -19,43 +19,44 @@ function buttonFunc(btn) {
     }     
 };
 
-//variable that connects to database
-const connection = new Client({
-    host: 'ep-weathered-voice-a1oawxdj-pooler.ap-southeast-1.aws.neon.tech',
-    user: 'neondb_owner',
-    password: 'npg_c1ICwiubznq2',
-    database: 'neondb',
-    port: 5432,
-    ssl: {
-        mode: 'require',
-        channel_binding: 'require'
-    }
-});
+const app = express();
+app.use(express.json());
 
-await connection.connect();
+async function submitFunc(req, res) {
+    const foodArr = req.body.foodArr;
 
-//add this function to html of submit button
-async function submitFunc() {
-    if (foodArr.length !== 0) {
-        let tableArr = [];
+    const response = await fetch('http://localhost:5500/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ foodArr })
+    });
 
-        for (let i = 0; i < foodArr.length; i++) {
-            try {
-                //query to run in database, returns recipe names and links
-                const res = await connection.query(
-                    `SELECT recipename, recipelink FROM recipes WHERE recipeid IN (
-                        SELECT recipeid FROM Ingredients1 WHERE ingredientname LIKE $1
-                    );`,
-                    [`%${foodArr[i]}%`]
-                );
-                tableArr.push(...res.rows);
-            } catch (err) {
-            console.error('Database error:', err);
-            }
+    const data = await response.json();  // server sends JSON
+    console.log(data);
+
+    if (!foodArr || !Array.isArray(foodArr))
+        return res.status(400).json({ error: "Invalid input" });
+
+    let tableArr = [];
+
+    for (let item of foodArr) {
+        try {
+            const result = await connection.query(
+                `SELECT recipename, recipelink FROM recipes WHERE recipeid IN (
+                    SELECT UNNEST(recipeid) FROM ingredients WHERE ingredients LIKE $1
+                )`,
+                [`%${item}%`]
+            );
+            tableArr.push(...result.rows);
+        } catch (err) {
+            console.error(err);
         }
-
-        //removes duplicates of recipes
-        let resultArr = [...new Map(tableArr.map(r => [r.recipename, r])).values()];
-        return resultArr;
     }
-}
+
+    let resultArr = [...new Map(tableArr.map(r => [r.recipename, r])).values()];
+    res.json(resultArr);
+};
+
+app.post('/search', submitFunc);
+
+app.listen(5500, () => console.log("Server running on port 5500"));
