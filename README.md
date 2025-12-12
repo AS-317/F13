@@ -1,3 +1,5 @@
+Neon SQL Database link: https://console.neon.tech/app/projects/restless-art-74204933?database=neondb
+
 To run: download all the files, open them in a terminal (eg VS code), connect the terminal to the neon SQL database. If using VS Code, install Live Server, click Go Live (at bottom right corner).
 Note: the search function doesn't really work, it just brings the user to a default page that shows recipes for carrots & tomatoes.
 
