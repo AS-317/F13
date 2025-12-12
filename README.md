@@ -14,6 +14,8 @@ HTML Code:
 
 CSS Code:
 - cursor images:
+https://pin.it/3JhCF1tFl (ribbon cursor on hover)
+https://toppng.com/free-image/cursor-PNG-free-PNG-Images_71165 (animal cursor)
 - food images:
 https://www.inspiredtaste.net/37646/vegetable-soup-recipe/
 https://tastesbetterfromscratch.com/classic-french-toast/
